@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
+#include <string>
 #include <vector>
 
-char findReplaceChar(std::vector<char> charVector, char testChar, bool shiftRight, int shiftPlaces);
-void encryptDecrypt(std::string message, int key, bool encrypt, std::string &text);
+void encryptFunction(std::vector<std::string> &tokens);
+void decryptFunction(std::vector<std::string> &tokens);

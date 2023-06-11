@@ -1,63 +1,59 @@
 #include "functions.h"
-#include "characters.h"
+#include "cipherFunctions.h"
 
-char findReplaceChar(std::vector<char> charVector, char testChar, bool shiftRight, int shiftPlaces)
+void encryptFunction(std::vector<std::string> &tokens)
 {
-	int testCharLocation, newCharLocation, remainder;
-	auto result = std::find(charVector.begin(), charVector.end(), testChar);
-	if (result != charVector.end())
-	{
-		testCharLocation = std::distance(charVector.begin(), result);
-	}
-	//else
-	//{
-		// what here?
-	//}
+	bool encryptBool = true;
+	try {
+		int key = std::stoi(tokens[1]);
+		if (key < 0 || key > 32767)
+		{
+			throw 20;
+		}
 
-	if (shiftRight == 0)
-	{
-		if (testCharLocation - shiftPlaces < 0)
+		std::string msg = tokens[2];
+		for (int i = 3; i < tokens.size(); i++)
 		{
-			remainder = shiftPlaces - testCharLocation;
-			newCharLocation = charVector.size() - remainder;
-			return charVector[newCharLocation];
+			msg = msg + " " + tokens[i];
 		}
-		else
-		{
-			newCharLocation = testCharLocation - shiftPlaces;
-			return charVector[newCharLocation];
-		}
+		std::string cipherText;
+		encryptDecrypt(msg, key, encryptBool, cipherText);
+		std::cout << "\nYour cipherText: " << '\n' << cipherText << '\n';
 	}
-	else
+	catch (std::invalid_argument)
 	{
-		if (testCharLocation + shiftPlaces > (charVector.size() - 1))
-		{
-			remainder = charVector.size() - testCharLocation;
-			newCharLocation = shiftPlaces - remainder;
-			return charVector[newCharLocation];
-		}
-		else
-		{
-			newCharLocation = testCharLocation + shiftPlaces;
-			return charVector[newCharLocation];
-		}
+		std::cout << "Key must be a positive integer.\n";
+	}
+	catch (std::out_of_range)
+	{
+		std::cout << "Key must be an integer between 0 and 32767.\n";
+	}
+	catch (int e)
+	{
+		std::cout << "Key must be an integer between 0 and 32767.\n";
 	}
 }
 
-void encryptDecrypt(std::string message, int key, bool encrypt, std::string &text)
+void decryptFunction(std::vector<std::string> &tokens)
 {
-	const char *msgPtr = message.c_str();
-	srand(key);
-	for (int i = 0; i < message.length(); i++)
-	{
-		int temp = rand();
-		int mod2 = temp % 2;
-		int rando = ((double)temp / RAND_MAX) * charVector.size();
-		if (encrypt == false)
+	bool encryptBool = false;
+	try {
+		int key = std::stoi(tokens[1]);
+		if (key < 0 || key > 32767)
 		{
-			mod2 = 1 - mod2;
+			throw 20;
 		}
-		char tempChar = findReplaceChar(charVector, msgPtr[i], mod2, rando);
-		text.push_back(tempChar);
+	}
+	catch (std::invalid_argument)
+	{
+		std::cout << "Key must be a positive integer.\n";
+	}
+	catch (std::out_of_range)
+	{
+		std::cout << "Key must be an integer between 0 and 32767.\n";
+	}
+	catch (int e)
+	{
+		std::cout << "Key must be an integer between 0 and 32767.\n";
 	}
 }

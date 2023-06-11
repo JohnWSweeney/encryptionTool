@@ -127,12 +127,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="cipherFunctions.cpp" />
     <ClCompile Include="functions.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="start.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="characters.h" />
+    <ClInclude Include="cipherFunctions.h" />
     <ClInclude Include="functions.h" />
+    <ClInclude Include="start.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,17 +1,14 @@
-#include "functions.h"
+#include "start.h"
 
 int main()
 {
-	std::cout << "encryptionTool v1.0.0\n\n";
+	std::cout << "encryptionTool v0.0.2\n\n";
 
-	std::string testStr = "The quick brown fox jumped over the lazy dog.";
-	int key = 1;
-
-	std::string cipherText, plainText;
-	encryptDecrypt(testStr, key, true, cipherText);
-	encryptDecrypt(cipherText, key, false, plainText);
-
-	std::cout << testStr << '\n';
-	std::cout << cipherText << '\n';
-	std::cout << plainText << '\n';
+	bool running = true;
+	std::vector<std::string> tokens;
+	while (running)
+	{
+		getInput(tokens);
+		startMenu(running, tokens);
+	}
 }

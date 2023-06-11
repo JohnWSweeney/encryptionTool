@@ -18,12 +18,24 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cipherFunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="start.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="functions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="characters.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cipherFunctions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="start.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="functions.h">
