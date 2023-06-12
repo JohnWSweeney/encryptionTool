@@ -27,6 +27,10 @@ void startMenu(bool &running, std::vector<std::string> &tokens)
 	{
 		//decryptFunction(tokens);
 	}
+	else if (tokens[0] == "loop")
+	{
+		loop(tokens);
+	}
 	// Select pseudorandom number generator function.
 	else if (tokens[0] == "select")
 	{

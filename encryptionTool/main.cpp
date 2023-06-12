@@ -2,7 +2,7 @@
 
 int main()
 {
-	std::cout << "encryptionTool v0.0.2\n\n";
+	std::cout << "encryptionTool v1.0.0\n\n";
 
 	bool running = true;
 	std::vector<std::string> tokens;

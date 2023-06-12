@@ -5,3 +5,4 @@
 
 void encryptFunction(std::vector<std::string> &tokens);
 void decryptFunction(std::vector<std::string> &tokens);
+void loop(std::vector<std::string> &tokens);
