@@ -1,5 +1,6 @@
 #include "start.h"
 #include "functions.h"
+#include "defaultPRNG.h"
 
 void getInput(std::vector<std::string> &tokens)
 {
@@ -32,9 +33,9 @@ void startMenu(bool &running, std::vector<std::string> &tokens)
 		loop(tokens);
 	}
 	// Select pseudorandom number generator function.
-	else if (tokens[0] == "select")
+	else if (tokens[0] == "default")
 	{
-
+		prngStatus(tokens);
 	}
 	// Close app.
 	else if (tokens[0] == "exit")

@@ -1,7 +1,9 @@
 #include "cipherFunctions.h"
+#include "random.h"
+#include "defaultPRNG.h"
 #include "characters.h"
 
-char findReplaceChar(std::vector<char> charVector, char testChar, bool shiftRight, int shiftPlaces)
+char findReplaceChar(std::vector<char> charVector, char testChar, bool shiftRight, int shiftNumPlaces)
 {
 	int testCharLocation, newCharLocation, remainder;
 	auto result = std::find(charVector.begin(), charVector.end(), testChar);
@@ -9,55 +11,51 @@ char findReplaceChar(std::vector<char> charVector, char testChar, bool shiftRigh
 	{
 		testCharLocation = std::distance(charVector.begin(), result);
 	}
-	//else
-	//{
-		// what here?
-	//}
 
 	if (shiftRight == 0)
 	{
-		if (testCharLocation - shiftPlaces < 0)
+		if (testCharLocation - shiftNumPlaces < 0)
 		{
-			remainder = shiftPlaces - testCharLocation;
+			remainder = shiftNumPlaces - testCharLocation;
 			newCharLocation = charVector.size() - remainder;
 			return charVector[newCharLocation];
 		}
 		else
 		{
-			newCharLocation = testCharLocation - shiftPlaces;
+			newCharLocation = testCharLocation - shiftNumPlaces;
 			return charVector[newCharLocation];
 		}
 	}
 	else
 	{
-		if (testCharLocation + shiftPlaces > (charVector.size() - 1))
+		if (testCharLocation + shiftNumPlaces > (charVector.size() - 1))
 		{
 			remainder = charVector.size() - testCharLocation;
-			newCharLocation = shiftPlaces - remainder;
+			newCharLocation = shiftNumPlaces - remainder;
 			return charVector[newCharLocation];
 		}
 		else
 		{
-			newCharLocation = testCharLocation + shiftPlaces;
+			newCharLocation = testCharLocation + shiftNumPlaces;
 			return charVector[newCharLocation];
 		}
 	}
 }
 
-void encryptDecrypt(std::string message, int key, bool encryptBool, std::string &text)
+void encryptDecrypt(std::string message, int seed, bool encryptBool, std::string &text)
 {
 	const char *msgPtr = message.c_str();
-	srand(key);
+	random rando;
+	rando.setSeed(defaultPRNG, seed);
 	for (int i = 0; i < message.length(); i++)
 	{
-		int temp = rand();
-		int mod2 = temp % 2;
-		int rando = ((double)temp / RAND_MAX) * (charVector.size() - 1) + 1;
+		bool shiftRight = rando.getNum(defaultPRNG, 0, 1);
+		int shiftNumPlaces = rando.getNum(defaultPRNG, 0, charVector.size() - 1);
 		if (encryptBool == false)
 		{
-			mod2 = 1 - mod2;
+			shiftRight = 1 - shiftRight;
 		}
-		char tempChar = findReplaceChar(charVector, msgPtr[i], mod2, rando);
+		char tempChar = findReplaceChar(charVector, msgPtr[i], shiftRight, shiftNumPlaces);
 		text.push_back(tempChar);
 	}
 }

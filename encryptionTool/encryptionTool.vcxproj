@@ -129,14 +129,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="cipherFunctions.cpp" />
+    <ClCompile Include="defaultPRNG.cpp" />
     <ClCompile Include="functions.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="random.cpp" />
     <ClCompile Include="start.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="characters.h" />
     <ClInclude Include="cipherFunctions.h" />
+    <ClInclude Include="defaultPRNG.h" />
     <ClInclude Include="functions.h" />
+    <ClInclude Include="random.h" />
     <ClInclude Include="start.h" />
   </ItemGroup>
   <ItemGroup>
