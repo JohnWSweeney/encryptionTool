@@ -30,7 +30,7 @@ To exit the app, enter:
 
 ## Future Updates
 - Standalone decrypt function.
-- Advnaced key schemes.
+- Advanced key schemes.
 
 ## Known Issues
 - Apostrophe and backslash characters not supported in messages.
